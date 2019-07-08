@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>The Key to Eternity</title>
+    <meta name="the key to eternity" content=" ">
+    <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
+        <script>
+      AFRAME.registerComponent('handle-events', {
+        update: function () {
+          var el = this.el;  // <a-sphere>
+          var flag = false;
+	      
+		el.addEventListener('mouseenter', () => {
+			flag = true;
+		if (el.parentEl.getAttribute('visible')) {
+			el.object3D.scale.x = el.object3D.scale.x * 2;
+			el.object3D.scale.y = el.object3D.scale.y * 2;
+			el.object3D.scale.z = el.object3D.scale.z * 2;
+			setTimeout(changeScene, 800);
+		}
+	      });
+		el.addEventListener('mouseleave', () => {
+	        flag = false;
+		if (el.parentEl.getAttribute('visible')) {
+			el.object3D.scale.x = el.object3D.scale.x * 0.5;
+			el.object3D.scale.y = el.object3D.scale.y * 0.5;
+			el.object3D.scale.z = el.object3D.scale.z * 0.5;
+		}
+	      });
+	      function changeScene() {
+		  console.log("flag");
+		  console.log(flag);
+		  if (flag) {
+			flag = false;
+			el.object3D.scale.x = el.object3D.scale.x * 0.5;
+			el.object3D.scale.y = el.object3D.scale.y * 0.5;
+			el.object3D.scale.z = el.object3D.scale.z * 0.5;
+            var parel = el.parentEl;
+		<!-- get the entity out of the way --> 
+                parel.object3D.scale.x = 0;
+                parel.object3D.scale.y = 0;
+                parel.object3D.scale.z = 0;
+            var toel = document.getElementById(el.getAttribute('toid'));
+		
+                toel.object3D.scale.x = 1;
+                toel.object3D.scale.y = 1;
+                toel.object3D.scale.z = 1;
+	    toel.setAttribute('visible', 'true');
+            
+            document.getElementById(el.parentEl.id).setAttribute('visible', 'false');
+		  };
+		     }
+		    
+		}
+      });
+    </script>
+  </head>
+  
+  <body>
+    <a-scene background="color: black">
+      <a-assets>
+	      <img id="4" src="assets/4-min.jpg">
+	      <img id="6" src="assets/6-min.jpg">
+	      <img id="1" src="assets/1-min.jpg">
+	      <img id="9" src="assets/9-min.jpg">
+	      <img id="5" src="assets/5-min.jpg">
+	      <img id="8" src="assets/8-min.jpg">
+	      <img id="2" src="assets/2-min.jpg">
+	      <img id="7" src="assets/7-min.jpg">
+	      <img id="3" src="assets/3-min.jpg">
+	      <audio id="sound" src="assets/sound.mp3" preload="auto"></audio>
+      </a-assets>
+      
+    <a-camera><a-cursor visible="true"></a-cursor></a-camera>
+  
+    <a-sky color="black" scale="0 0 0" visible="false" sound="src: #sound; autoplay: true; loop: true"> </a-sky>
+
+      <a-entity id="loc_1">
+        <a-sky material="src: #1"></a-sky>
+<a-sphere  toid="loc_2" scale="3 3 3" position="-1 -6 -64" material="src: #2" animation="property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear" handle-events></a-sphere>
+        
+	<a-sphere 
+		toid="loc_3" 
+		scale="3 3 3" 
+		position="64 -6 0" 
+		material="src: #3" 
+		animation="property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear" 
+		handle-events> 
+	</a-sphere>
+
+	<a-sphere 
+		toid="loc_4" 
+		scale="3 3 3" 
+		position="-64 -6 0" 
+		material="src: #4" 
+		animation="property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear" 
+		handle-events> 
+	</a-sphere>
+
+	<a-sphere 
+		toid="loc_5" 
+		scale="3 3 3" 
+		position="-1 -6 64" 
+		material="src: #5" 
+		animation="property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear" 
+		handle-events> 
+	</a-sphere>
+
+      </a-entity>
+
+      <a-entity id="loc_2" visible=false scale="0 0 0">
+        <a-sky material="src: #2" rotation="0 270 0"></a-sky>
+	<a-sphere 
+		toid="loc_1" 
+		scale="3 3 3" 
+		position="-1 -6 64" 
+		material="src: #1" 
+		animation="property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear" 
+		handle-events> 
+	</a-sphere>
+
+	<a-sphere 
+		toid="loc_6" 
+		scale="3 3 3" 
+		position="-1 -6 -64" 
+		material="src: #6" 
+		animation="property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear" 
+		handle-events> 
+	</a-sphere>
+      
+      </a-entity>
+        
+
+      <a-entity id="loc_3" visible=false scale="0 0 0">
+        <a-sky material="src: #3" rotation="0 180 0"></a-sky>
+	<a-sphere 
+		toid="loc_1" 
+		scale="3 3 3" 
+		position="-64 -6 -1" 
+		material="src: #1" 
+		animation="property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear" 
+		handle-events> 
+	</a-sphere>
+
+	<a-sphere 
+		toid="loc_9" 
+		scale="3 3 3" 
+		position="64 -6 -1" 
+		material="src: #1" 
+		animation="property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear" 
+		handle-events> 
+	</a-sphere>
+      </a-entity>
+
+      <a-entity id="loc_4" visible=false scale="0 0 0">
+        <a-sky material="src: #4" rotation="0 0 0"></a-sky>
+	<a-sphere 
+		toid="loc_1" 
+		scale="3 3 3" 
+		position="64 -6 -1" 
+		material="src: #1" 
+		animation="property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear" 
+		handle-events> 
+	</a-sphere>
+
+	<a-sphere 
+		toid="loc_8" 
+		scale="3 3 3" 
+		position="-64 -6 -1" 
+		material="src: #8" 
+		animation="property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear" 
+		handle-events> 
+	</a-sphere>
+      </a-entity>
+
+
+      <a-entity id="loc_5" visible=false scale="0 0 0">
+        <a-sky material="src: #5" rotation="0 90 0"></a-sky>
+	<a-sphere 
+		toid="loc_1" 
+		scale="3 3 3" 
+		position="-1 -6 -64" 
+		material="src: #1" 
+		animation="property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear" 
+		handle-events> 
+	</a-sphere>
+
+	<a-sphere 
+		toid="loc_7" 
+		scale="3 3 3" 
+		position="-1 -6 64" 
+		material="src: #7" 
+		animation="property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear" 
+		handle-events> 
+	</a-sphere>
+
+      </a-entity>
+
+
+      <a-entity id="loc_6" visible=false scale="0 0 0">
+        <a-sky material="src: #6" rotation="0 270 0"></a-sky>
+	<a-sphere 
+		toid="loc_2" 
+		scale="3 3 3" 
+		position="-1 -6 64" 
+		material="src: #2" 
+		animation="property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear" 
+		handle-events> 
+	</a-sphere>
+      </a-entity>
+
+      <a-entity id="loc_7" visible=false scale="0 0 0">
+        <a-sky material="src: #7" rotation="0 90 0"></a-sky>
+	<a-sphere 
+		toid="loc_5" 
+		scale="3 3 3" 
+		position="-1 -6 -64" 
+		material="src: #2" 
+		animation="property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear" 
+		handle-events> 
+	</a-sphere>
+      </a-entity>
+
+      <a-entity id="loc_8" visible=false scale="0 0 0">
+        <a-sky material="src: #8" rotation="0 0 0"></a-sky>
+	<a-sphere 
+		toid="loc_4" 
+		scale="3 3 3" 
+		position="64 -6 -1" 
+		material="src: #4" 
+		animation="property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear" 
+		handle-events> 
+	</a-sphere>
+      </a-entity>
+
+      <a-entity id="loc_9" visible=false scale="0 0 0">
+        <a-sky material="src: #9" rotation="0 180 0"></a-sky>
+	<a-sphere 
+		toid="loc_3" 
+		scale="3 3 3" 
+		position="-64 -6 -1" 
+		material="src: #3" 
+		animation="property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear" 
+		handle-events> 
+	</a-sphere>
+      </a-entity>
+    </a-scene>
+  </body>
+</html>
