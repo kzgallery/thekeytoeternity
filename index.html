@@ -58,7 +58,7 @@
   </head>
   
   <body>
-    <a-scene background="color: black">
+    <a-scene background="color: black" loading-screen="dotsColor=: yellow; backgroundColor: grey" >
       <a-assets>
 	      <img id="4" src="assets/4-min.jpg">
 	      <img id="6" src="assets/6-min.jpg">
@@ -72,7 +72,7 @@
 	      <audio id="sound" src="assets/sound.mp3" preload="auto"></audio>
       </a-assets>
       
-    <a-camera><a-cursor visible="true"></a-cursor></a-camera>
+    <a-camera><a-cursor visible="true" color="yellow" opacity="0.5"></a-cursor></a-camera>
   
     <a-sky color="black" scale="0 0 0" visible="false" sound="src: #sound; autoplay: true; loop: true"> </a-sky>
 
